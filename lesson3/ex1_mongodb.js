@@ -4,13 +4,13 @@ async function main() {
     // Read https://docs.mongodb.com/drivers/node/current/quick-start/ to setup
     // Documentation: https://mongodb.github.io/node-mongodb-native/4.0/
     
-    // TODO: Replace the uri string with your MongoDB deployment's connection string.
-    const uri = "";
+    // TODO: Replace the uri string with your MongoDB deployment's connection string. DONE!
+    const uri = "mongodb+srv://danielcwq:rl6kwrto@cluster0.kck2i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
     await client.connect()
 
-    // TODO: create a database called yourname_attendance
-    const database = client.db('gerrard_attendance')
+    // TODO: create a database called yourname_attendance DONE!
+    const database = client.db('daniel_attendance')
 
     // TODO: create a collection called students
     const students = database.collection('students')
