@@ -5,7 +5,7 @@ async function main() {
     // Documentation: https://mongodb.github.io/node-mongodb-native/4.0/
     
     // TODO: Replace the uri string with your MongoDB deployment's connection string. DONE!
-    const uri = "mongodb+srv://danielcwq:rl6kwrto@cluster0.kck2i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://danielcwq:password@cluster0.kck2i.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     const client = new MongoClient(uri);
     await client.connect()
 
