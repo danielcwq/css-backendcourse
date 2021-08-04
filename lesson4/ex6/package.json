@@ -4,7 +4,8 @@
   "description": "If you have Git installed, navigate to the folder you intend to download the examples into.\r Enter the following commands.\r ```\r git init\r git remote add origin https://github.com/flyyee/css-backendcourse.git\r git pull origin master\r ```\r Alternatively, you can manually copy the files over from the Github repo.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ex5_profile.js"
   },
   "repository": {
     "type": "git",

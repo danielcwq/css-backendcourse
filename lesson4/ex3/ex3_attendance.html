@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Attendance</title>
+</head>
+
+<body>
+    Currently logged in as (student): <span id="name"></span><br>
+    <a href="/attendance" onclick=add()>Add yourself to the attendance list</a><br>
+    Attendance:
+    <div id="attendance"></div>
+    <a href="/">Go back</a>
+</body>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 20px;
+        padding: 50px;
+        /* text-align: center; */
+        color: #1d3557;
+        background-color: #a8dadc;
+    }
+</style>
+<script>
+    function load() {
+        fetch(`http://localhost:3000/api/attendance`)
+            .then(res => res.json())
+            .then(data => {
+                $("#attendance").html(JSON.stringify(data))
+            })
+        let myName = window.localStorage.getItem("name")
+        $("#name").html(myName)
+    }
+    setInterval(load, 1000)
+    function add() {
+        let name = window.localStorage.getItem("name")
+        let username = window.localStorage.getItem("username")
+        let password = window.localStorage.getItem("password")
+        fetch(`http://localhost:3000/api/add`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                username: username,
+                password: password
+            })
+        })
+            .then(res => {
+                // console.log(res.status)
+                alert("Successfully added!")
+            })
+    }
+</script>
+
+</html>

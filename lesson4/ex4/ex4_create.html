@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<script>
+    function submit() {
+        let name = document.getElementById("name").value
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        let accountType = $('#accountType').val()
+        if (!name || !username || !password) {
+            alert("Please fill in your details")
+        } else {
+            fetch(`http://localhost:3000/api/createaccount`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    username: username,
+                    password: password,
+                    accountType: accountType
+                })
+            })
+                .then(res => {
+                    // console.log(res.status)
+                    alert("Successfully created your account!")
+                    window.localStorage.setItem("name", name)
+                    window.localStorage.setItem("username", username)
+                    window.localStorage.setItem("password", password)
+                    window.localStorage.setItem("accountType", accountType)
+                })
+        }
+    }
+</script>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Attendance</title>
+</head>
+
+<body>
+    Create account:<br>
+    Name: <input type="text" id="name"><br>
+    Username: <input type="Username" id="username"><br>
+    Password: <input type="password" id="password"><br>
+    Account type: <select id="accountType">
+        <option>student</option>
+        <option>teacher</option>
+    </select><br>
+    <button onclick=submit()>Create</button><br>
+    <a href="/attendance">Attendance</a><br>
+</body>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 20px;
+        padding: 50px;
+        /* text-align: center; */
+        color: #1d3557;
+        background-color: #a8dadc;
+    }
+</style>
+
+</html>

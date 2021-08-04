@@ -42,6 +42,10 @@ async function main() {
     // Usage example: https://docs.mongodb.com/drivers/node/usage-examples/findOne/
     // TODO: find (obtain data for) the student with the age 17
     let query = { age: 17 }
+    query = {
+        username: "",
+        password: ""
+    }
     let student = await students.findOne(query) // Recap: Lesson 1 Example 7
     console.log(student)
 

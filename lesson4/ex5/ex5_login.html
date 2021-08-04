@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<script>
+    function submit() {
+        let username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        if (!username || !password) {
+            alert("Please fill in your details")
+        } else {
+            fetch(`http://localhost:3000/api/login`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.token != null) {
+                        alert("Successfully logged in!")
+                        console.log(res)
+                        window.localStorage.setItem("token", res.token)
+                        window.localStorage.setItem("name", res.name)
+                        window.localStorage.setItem("accountType", res.accountType)
+                    } else {
+                        alert("Login failed")
+                    }
+                })
+        }
+    }
+
+    function logout() {
+        window.localStorage.removeItem("token")
+        window.localStorage.removeItem("name")
+        window.localStorage.removeItem("accountType")
+        window.localStorage.removeItem("username")
+        window.localStorage.removeItem("password")
+    }
+</script>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Attendance</title>
+</head>
+
+<body>
+    <a href="/" onclick=logout()>Logout</a><br>
+    Login:<br>
+    Username: <input type="Username" id="username"><br>
+    Password: <input type="password" id="password"><br>
+    <button onclick=submit()>Login</button><br>
+    <a href="/">Go back</a><br>
+    <a href="/attendance">Attendance</a><br>
+</body>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 20px;
+        padding: 50px;
+        /* text-align: center; */
+        color: #1d3557;
+        background-color: #a8dadc;
+    }
+</style>
+
+</html>
